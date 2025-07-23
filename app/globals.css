@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #00ffff;
+  --primary-dark: #00cccc;
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #1f2937;
+  --card-foreground: #ffffff;
+  --popover: #1f2937;
+  --popover-foreground: #ffffff;
+  --muted: #374151;
+  --muted-foreground: #9ca3af;
+  --accent: #1f2937;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #374151;
+  --input: #374151;
+  --ring: #00ffff;
+  --radius: 0.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+section {
+  position: relative;
+  z-index: 1;
+}
+
+section > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.animate-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.animate-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.typing-container {
+  display: inline-flex;
+  align-items: center;
+}
+
+.typing-text {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background-color: var(--primary);
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+.cursor-outline {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s, border-color 0.3s;
+}
+
+.letter-hover {
+  position: relative;
+  display: inline-block;
+}
+
+.letter-hover span {
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.letter-hover span.hovered {
+  color: var(--primary);
+}
+
+.hover-text-effect {
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.hover-text-effect:hover {
+  color: var(--primary);
+}
+
+.hello-button {
+  color: var(--primary);
+  background-color: transparent;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform;
+}
+
+.hello-button:hover {
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.animated-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateY(0);
+  backdrop-filter: blur(5px);
+}
+
+.animated-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+}
+
+.animated-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 255, 255, 0.2);
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #ffffff, #00ffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% 100%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.cool-gradient-border {
+  position: relative;
+  background-color: black;
+  border-radius: 9999px;
+  padding: 1px;
+  background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+}
+
+.cool-gradient-border-inner {
+  background-color: black;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+}
+
+.cool-gradient-text {
+  background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
