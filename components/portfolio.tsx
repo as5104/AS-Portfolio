@@ -42,7 +42,7 @@ export default function Portfolio() {
       description: "Modern, responsive portfolio website built with Next.js, featuring interactive animations, WebGL effects, and a sleek dark theme design.",
       tags: ["Next.js", "React", "TypeScript", "Framer Motion", "WebGL", "Tailwind CSS"],
       image: "/placeholder1.png?height=600&width=800",
-      githubLink: "https://github.com/as5104",
+      githubLink: "https://github.com/as5104/AS-Portfolio",
       liveLink: "#",
     },
     {
@@ -64,9 +64,9 @@ export default function Portfolio() {
     {
       title: "Math Challenge",
       description: "Fun math game with various difficulty levels and a score system.",
-      tags: ["React", "Tailwind CSS"],
+      tags: ["React", "JavaScript", "Tailwind CSS"],
       image: "/placeholder4.png?height=600&width=800",
-      githubLink: "https://github.com/as5104/Math-Challenge",
+      githubLink: "https://github.com/as5104/Math-Challenge-with-ui",
       // liveLink: "#",
     },
   ]
