@@ -8,8 +8,42 @@ export default function CursorEffect() {
   const [clicked, setClicked] = useState(false)
   const [linkHovered, setLinkHovered] = useState(false)
   const [textHovered, setTextHovered] = useState(false)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
 
   useEffect(() => {
+    // Detect if device supports touch and doesn't have a precise pointer
+    const checkTouchDevice = () => {
+      const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0
+      const hasPrecisePointer = window.matchMedia("(pointer: fine)").matches
+
+      setIsTouchDevice(hasTouch && !hasPrecisePointer)
+    }
+
+    checkTouchDevice()
+
+    // Listen for changes in pointer capabilities
+    const mediaQuery = window.matchMedia("(pointer: fine)")
+    const handleChange = () => checkTouchDevice()
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", handleChange)
+    } else {
+      // Fallback for older browsers
+      mediaQuery.addListener(handleChange)
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener("change", handleChange)
+      } else {
+        mediaQuery.removeListener(handleChange)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isTouchDevice) return
+
     const addEventListeners = () => {
       document.addEventListener("mousemove", onMouseMove)
       document.addEventListener("mouseenter", onMouseEnter)
@@ -29,6 +63,7 @@ export default function CursorEffect() {
     const onMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY })
 
+      // Handle letter-by-letter hover effect
       document.querySelectorAll(".letter-hover").forEach((element) => {
         if (!element.textContent) return
 
@@ -67,7 +102,6 @@ export default function CursorEffect() {
         const deltaX = e.clientX - centerX
         const deltaY = e.clientY - centerY
 
-        // Only rotate if cursor is within a certain distance of the circle
         const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
         const maxDistance = Math.max(window.innerWidth, window.innerHeight) / 2
 
@@ -75,7 +109,6 @@ export default function CursorEffect() {
           // Calculate rotation angle based on cursor position
           const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI)
 
-          // Apply rotation with smooth transition
           designerCircle.style.transform = `rotate(${angle}deg) scale(${distance < rect.width ? 1.05 : 1})`
         }
       }
@@ -122,7 +155,11 @@ export default function CursorEffect() {
     return () => {
       removeEventListeners()
     }
-  }, [])
+  }, [isTouchDevice])
+
+  if (isTouchDevice) {
+    return null
+  }
 
   const cursorDotStyle = {
     left: `${position.x}px`,
