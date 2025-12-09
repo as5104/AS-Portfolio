@@ -70,10 +70,33 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
+        heading: [
+          "var(--font-heading)",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif",
+        ],
+        body: [
+          "var(--font-body)",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif",
+        ],
+        
+        sans: ["var(--font-body)", "sans-serif"],
         poppins: ["var(--font-poppins)", "sans-serif"],
       },
+
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

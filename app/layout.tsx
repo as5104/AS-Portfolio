@@ -1,18 +1,22 @@
 import type React from "react"
-import type { Metadata } from "next"
-import { Inter, Poppins } from "next/font/google"
+import type { Metadata, Viewport } from "next"
+import { Outfit, Poppins } from "next/font/google"
 import "./globals.css"
 import ClientLayout from "./client-layout"
+import Navbar from "@/components/navbar"
 
-const inter = Inter({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-heading",
+  display: "swap",
 })
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
+  variable: "--font-body",
+  display: "swap",
 })
 
 export const metadata: Metadata = {
@@ -20,8 +24,12 @@ export const metadata: Metadata = {
   description: "Personal portfolio website of Ankit Sarkar - Frontend Developer",
   keywords: ["portfolio", "frontend developer", "react", "nextjs", "web development"],
   authors: [{ name: "Ankit Sarkar" }],
-  viewport: "width=device-width, initial-scale=1",
-    generator: 'v0.dev'
+  generator: "as.dev",
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 }
 
 export default function RootLayout({
@@ -31,7 +39,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${poppins.variable} font-sans bg-black text-white antialiased`}>
+      <body
+        className={`${outfit.variable} ${poppins.variable} font-sans bg-black text-white antialiased`}
+      >
+        <Navbar />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState, useRef } from "react"
-import { motion } from "framer-motion"
+import { motion, type Variants } from "framer-motion"
 import { Code, Layout, Lightbulb } from "lucide-react"
 import type { JSX } from "react"
 
@@ -30,19 +30,22 @@ export default function ServiceCarousel({
   const DEFAULT_ITEMS: ServiceItem[] = [
     {
       title: "Frontend Development",
-      description: "Building responsive, interactive user interfaces with React, Next.js, and modern CSS frameworks.",
+      description:
+        "Building responsive, interactive user interfaces with React, Next.js, and modern CSS frameworks.",
       id: 1,
       icon: <Layout className="w-6 h-6 text-cyan-400" />,
     },
     {
       title: "Web Performance",
-      description: "Optimizing websites for speed, accessibility, and SEO to deliver exceptional user experiences.",
+      description:
+        "Optimizing websites for speed, accessibility, and SEO to deliver exceptional user experiences.",
       id: 2,
       icon: <Code className="w-6 h-6 text-cyan-400" />,
     },
     {
       title: "Creative Solutions",
-      description: "Solving complex UI challenges with innovative approaches and clean, maintainable code.",
+      description:
+        "Solving complex UI challenges with innovative approaches and clean, maintainable code.",
       id: 3,
       icon: <Lightbulb className="w-6 h-6 text-cyan-400" />,
     },
@@ -53,7 +56,6 @@ export default function ServiceCarousel({
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Handle hover state
   useEffect(() => {
     if (pauseOnHover && containerRef.current) {
       const container = containerRef.current
@@ -68,7 +70,6 @@ export default function ServiceCarousel({
     }
   }, [pauseOnHover])
 
-  // Handle autoplay
   useEffect(() => {
     if (autoplay && (!pauseOnHover || !isHovered)) {
       const timer = setInterval(() => {
@@ -83,9 +84,9 @@ export default function ServiceCarousel({
     }
   }, [autoplay, autoplayDelay, isHovered, loop, serviceItems.length, pauseOnHover])
 
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? "100%" : "-100%",
+  const slideVariants: Variants = {
+    enter: (custom: number) => ({
+      x: custom > 0 ? "100%" : "-100%",
       opacity: 0,
     }),
     center: {
@@ -96,8 +97,8 @@ export default function ServiceCarousel({
         opacity: { duration: 0.2 },
       },
     },
-    exit: (direction: number) => ({
-      x: direction < 0 ? "100%" : "-100%",
+    exit: (custom: number) => ({
+      x: custom < 0 ? "100%" : "-100%",
       opacity: 0,
       transition: {
         x: { type: "spring", stiffness: 300, damping: 30 },
@@ -106,7 +107,7 @@ export default function ServiceCarousel({
     }),
   }
 
-  const [[page, direction], setPage] = useState([0, 0])
+  const [[page, direction], setPage] = useState<[number, number]>([0, 0])
 
   const paginate = (newDirection: number) => {
     const newIndex = currentIndex + newDirection
@@ -149,7 +150,6 @@ export default function ServiceCarousel({
         </motion.div>
       </div>
 
-      {/* Navigation buttons */}
       <button
         className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 text-white hover:bg-cyan-500/20 transition-colors z-10"
         onClick={() => paginate(-1)}
@@ -165,7 +165,6 @@ export default function ServiceCarousel({
         →
       </button>
 
-      {/* Indicators */}
       <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
         {serviceItems.map((_, index) => (
           <button

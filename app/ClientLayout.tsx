@@ -14,24 +14,22 @@ export default function ClientLayout({
   const [loading, setLoading] = useState(true)
   const [mounted, setMounted] = useState(false)
 
-  // Handle initial mounting
+
   useEffect(() => {
     setMounted(true)
 
-    // Prevent scrolling while loading
+
     if (loading) {
       document.body.style.overflow = "hidden"
     }
 
-    // Fallback to ensure loading always completes
     const fallbackTimer = setTimeout(() => {
       setLoading(false)
-    }, 5000) // 5 seconds max loading time
+    }, 5000)
 
     return () => clearTimeout(fallbackTimer)
   }, [loading])
 
-  // Function to finish loading
   const handleFinishLoading = () => {
     setLoading(false)
     document.body.style.overflow = ""

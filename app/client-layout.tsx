@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import BackgroundAurora from "@/components/background-aurora"
@@ -13,43 +12,37 @@ export default function ClientLayout({
   children: React.ReactNode
 }) {
   const [loading, setLoading] = useState(true)
-  const [mounted, setMounted] = useState(false)
 
+  
   useEffect(() => {
-    console.log("ClientLayout mounted, loading:", loading)
-    setMounted(true)
-
     if (loading) {
       document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
     }
 
-    // Auto-finish loading after 3 seconds as fallback
     const timer = setTimeout(() => {
-      console.log("Auto-finishing loading after 3 seconds")
       setLoading(false)
       document.body.style.overflow = ""
     }, 3000)
 
-    return () => clearTimeout(timer)
+    return () => {
+      clearTimeout(timer)
+      document.body.style.overflow = ""
+    }
   }, [loading])
 
   const handleFinishLoading = () => {
-    console.log("handleFinishLoading called")
     setLoading(false)
     document.body.style.overflow = ""
   }
 
-  if (!mounted) {
-    console.log("Not mounted yet, returning null")
-    return null
-  }
-
-  console.log("Rendering ClientLayout, loading:", loading, "mounted:", mounted)
-
   return (
     <>
       <AnimatePresence mode="wait">
-        {loading && <LoadingScreen key="loading" finishLoading={handleFinishLoading} />}
+        {loading && (
+          <LoadingScreen key="loading" finishLoading={handleFinishLoading} />
+        )}
       </AnimatePresence>
 
       <AnimatePresence>
@@ -59,10 +52,12 @@ export default function ClientLayout({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="w-full"
+            className="w-full relative min-h-screen overflow-x-hidden"
           >
             <BackgroundAurora />
-            {children}
+            <main className="relative z-10 pb-[88px] md:pb-0">
+              {children}
+            </main>
           </motion.div>
         )}
       </AnimatePresence>

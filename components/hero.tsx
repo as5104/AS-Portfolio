@@ -53,7 +53,7 @@ export default function Hero() {
   }, [])
 
   const descriptionText =
-    "A passionate frontend developer specializing in creating responsive, interactive web experiences. Passionate about turning ideas into elegant digital experiences."
+    "A passionate developer specializing in creating responsive, interactive web experiences. Passionate about turning ideas into elegant digital experiences."
 
   return (
     <section id="home" ref={sectionRef} className="min-h-screen flex items-center pt-20 pb-10 relative">
@@ -92,7 +92,7 @@ export default function Hero() {
               </div>
 
               <h3 className="text-3xl md:text-4xl font-bold leading-tight text-gray-300">
-                <span className="letter-hover">Frontend_</span>
+                <span className="letter-hover">Software_</span>
                 <span className="letter-hover">Developer</span>
               </h3>
 
