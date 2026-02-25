@@ -50,6 +50,7 @@ export default function RootLayout({
           theme="dark"
           richColors
           closeButton
+          style={{ zIndex: 99999 }}
         />
       </body>
     </html>

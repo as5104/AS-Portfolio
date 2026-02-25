@@ -11,6 +11,12 @@ interface HelloAnimationProps {
 export default function HelloAnimation({ isOpen, onClose }: HelloAnimationProps) {
   const [animationComplete, setAnimationComplete] = useState(false)
 
+  // Lock body scroll when open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : ""
+    return () => { document.body.style.overflow = "" }
+  }, [isOpen])
+
   useEffect(() => {
     if (isOpen) {
       const timer = setTimeout(() => {
@@ -48,18 +54,14 @@ export default function HelloAnimation({ isOpen, onClose }: HelloAnimationProps)
                 className="text-6xl md:text-7xl"
                 initial={{ opacity: 0, x: -20, rotate: -20 }}
                 animate={{
-                  opacity: 1,
-                  x: 0,
-                  rotate: 0,
-                  transition: { delay: 0.2, duration: 0.5 },
-                }}
-                whileInView={{
-                  rotate: [0, 15, 0, 15, 0],
+                  opacity: [null, 1, 1, 1, 1, 1],
+                  x: [null, 0, 0, 0, 0, 0],
+                  rotate: [-20, 0, 15, 0, 15, 0],
                   transition: {
-                    delay: 0.7,
-                    duration: 1.5,
+                    duration: 2.2,
+                    delay: 0.2,
                     ease: "easeInOut",
-                    times: [0, 0.2, 0.4, 0.6, 1],
+                    times: [0, 0.23, 0.5, 0.65, 0.82, 1],
                   },
                 }}
               >

@@ -2,10 +2,50 @@
 
 import type React from "react"
 import { useRef, useState } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { Mail, MapPin, Phone, Send, Loader2 } from "lucide-react"
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
+import { Mail, MapPin, Phone, Send, Loader2, AlertCircle } from "lucide-react"
 import { toast } from "sonner"
 import SuccessModal from "./success-modal"
+
+// --------------- Rate Limit Config ---------------
+const RATE_LIMIT_KEY = "as_portfolio_rl"
+const MAX_SENDS = 3
+const WINDOW_DAYS = 3
+const WINDOW_MS = WINDOW_DAYS * 24 * 60 * 60 * 1000
+
+function getRateLimitData(): Record<string, number[]> {
+  try { return JSON.parse(localStorage.getItem(RATE_LIMIT_KEY) || "{}") }
+  catch { return {} }
+}
+
+function saveRateLimitData(data: Record<string, number[]>) {
+  try { localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(data)) }
+  catch { /* storage full — fail silently */ }
+}
+
+/** CHECK ONLY — does not write to localStorage */
+function checkRateLimit(email: string): { allowed: boolean; daysLeft?: number; recent: number[] } {
+  const key = email.toLowerCase().trim()
+  const now = Date.now()
+  const data = getRateLimitData()
+  const recent = (data[key] || []).filter((t) => now - t < WINDOW_MS)
+
+  if (recent.length >= MAX_SENDS) {
+    const oldest = Math.min(...recent)
+    const daysLeft = Math.ceil((oldest + WINDOW_MS - now) / (1000 * 60 * 60 * 24))
+    return { allowed: false, daysLeft, recent }
+  }
+  return { allowed: true, recent }
+}
+
+/** RECORD — call only after a successful send */
+function recordSend(email: string, recent: number[]) {
+  const key = email.toLowerCase().trim()
+  const data = getRateLimitData()
+  data[key] = [...recent, Date.now()]
+  saveRateLimitData(data)
+}
+// -------------------------------------------------
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -27,6 +67,7 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [submittedName, setSubmittedName] = useState("")
+  const [rateLimitError, setRateLimitError] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -36,9 +77,21 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Client-side: basic sanity checks before hitting the server
+    // Guard: prevent rapid double-submit
+    if (isSubmitting) return
+
+    // Empty field check
     if (!formData.name.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.message.trim()) {
       toast.error("Please fill in all fields.")
+      return
+    }
+
+    // Rate limit check (read-only, does not write yet)
+    const limit = checkRateLimit(formData.email)
+    if (!limit.allowed) {
+      const msg = `You've reached the limit. Try again in ${limit.daysLeft} day${limit.daysLeft === 1 ? "" : "s"}.`
+      setRateLimitError(msg)
+      setTimeout(() => setRateLimitError(null), 6000)
       return
     }
 
@@ -59,6 +112,8 @@ export default function Contact() {
       }
 
       setSubmittedName(formData.name)
+      // Record the send ONLY after confirmed success
+      recordSend(formData.email, limit.recent)
       setFormData({ name: "", email: "", subject: "", message: "" })
       setShowModal(true)
     } catch {
@@ -263,6 +318,23 @@ export default function Contact() {
                       className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed resize-none"
                     ></textarea>
                   </div>
+
+                  {/* Rate limit inline error */}
+                  <AnimatePresence>
+                    {rateLimitError && (
+                      <motion.div
+                        key="rl-error"
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        className="flex items-start gap-3 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/25 text-sm text-red-400"
+                      >
+                        <AlertCircle size={16} className="mt-0.5 shrink-0" />
+                        <span>{rateLimitError}</span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
                   <motion.button
                     type="submit"

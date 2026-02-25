@@ -285,3 +285,8 @@ section > .container {
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Force Sonner toasts above all page elements ── */
+[data-sonner-toaster] {
+  z-index: 99999 !important;
+}
