@@ -4,6 +4,7 @@ import { Outfit, Poppins } from "next/font/google"
 import "./globals.css"
 import ClientLayout from "./client-layout"
 import Navbar from "@/components/navbar"
+import { Toaster } from "sonner"
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -44,6 +45,12 @@ export default function RootLayout({
       >
         <Navbar />
         <ClientLayout>{children}</ClientLayout>
+        <Toaster
+          position="bottom-right"
+          theme="dark"
+          richColors
+          closeButton
+        />
       </body>
     </html>
   )

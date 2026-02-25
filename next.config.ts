@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
   images: {
-    domains: ["placeholder.svg"],
     unoptimized: true,
   },
   eslint: {
