@@ -76,7 +76,7 @@ export default function Portfolio() {
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/0 via-cyan-950/5 to-black/0 pointer-events-none"></div>
       <div className="container mx-auto px-4 md:px-6">
         <motion.div style={{ y, opacity }} className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Portfolio & Projects</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Portfolio &amp; Projects</h2>
           <p className="text-gray-400 max-w-2xl mx-auto">Latest projects</p>
           <div className="w-20 h-1 bg-cyan-400 mx-auto mt-4"></div>
         </motion.div>
@@ -89,7 +89,7 @@ export default function Portfolio() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, margin: "-10% 0px" }}
               transition={{ duration: 0.7, delay: index * 0.1 }}
-              className="portfolio-item group relative overflow-hidden rounded-xl bg-gray-900 border border-gray-800"
+              className="portfolio-item group relative overflow-hidden rounded-3xl bg-gray-900 border border-gray-800"
             >
               <div className="aspect-video overflow-hidden">
                 <img

@@ -7,7 +7,7 @@ import { Mail, MapPin, Phone, Send, Loader2, AlertCircle } from "lucide-react"
 import { toast } from "sonner"
 import SuccessModal from "./success-modal"
 
-// --------------- Rate Limit Config ---------------
+//Rate Limit Config
 const RATE_LIMIT_KEY = "as_portfolio_rl"
 const MAX_SENDS = 3
 const WINDOW_DAYS = 3
@@ -23,7 +23,6 @@ function saveRateLimitData(data: Record<string, number[]>) {
   catch { /* storage full — fail silently */ }
 }
 
-/** CHECK ONLY — does not write to localStorage */
 function checkRateLimit(email: string): { allowed: boolean; daysLeft?: number; recent: number[] } {
   const key = email.toLowerCase().trim()
   const now = Date.now()
@@ -45,7 +44,6 @@ function recordSend(email: string, recent: number[]) {
   data[key] = [...recent, Date.now()]
   saveRateLimitData(data)
 }
-// -------------------------------------------------
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -77,16 +75,15 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Guard: prevent rapid double-submit
+    //prevent rapid double-submit
     if (isSubmitting) return
 
-    // Empty field check
     if (!formData.name.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.message.trim()) {
       toast.error("Please fill in all fields.")
       return
     }
 
-    // Rate limit check (read-only, does not write yet)
+    // Rate limit check
     const limit = checkRateLimit(formData.email)
     if (!limit.allowed) {
       const msg = `You've reached the limit. Try again in ${limit.daysLeft} day${limit.daysLeft === 1 ? "" : "s"}.`
@@ -112,7 +109,7 @@ export default function Contact() {
       }
 
       setSubmittedName(formData.name)
-      // Record the send ONLY after confirmed success
+      // Record the send only after confirmed success
       recordSend(formData.email, limit.recent)
       setFormData({ name: "", email: "", subject: "", message: "" })
       setShowModal(true)
@@ -248,7 +245,7 @@ export default function Contact() {
             </div>
 
             <div className="animate-fade-in">
-              <form onSubmit={handleSubmit} className="bg-gray-900/50 p-8 rounded-xl border border-gray-800">
+              <form onSubmit={handleSubmit} className="bg-gray-900/50 p-8 rounded-3xl border border-gray-800">
                 <h3 className="text-2xl font-bold mb-6">Send Message</h3>
 
                 <div className="space-y-4">
@@ -265,7 +262,7 @@ export default function Contact() {
                       required
                       maxLength={100}
                       disabled={isSubmitting}
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                     />
                   </div>
 
@@ -281,7 +278,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       disabled={isSubmitting}
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                     />
                   </div>
 
@@ -298,7 +295,7 @@ export default function Contact() {
                       required
                       maxLength={200}
                       disabled={isSubmitting}
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                     />
                   </div>
 
@@ -328,7 +325,7 @@ export default function Contact() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -6 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="flex items-start gap-3 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/25 text-sm text-red-400"
+                        className="flex items-start gap-3 px-4 py-3 rounded-2xl bg-red-500/10 border border-red-500/25 text-sm text-red-400"
                       >
                         <AlertCircle size={16} className="mt-0.5 shrink-0" />
                         <span>{rateLimitError}</span>
@@ -339,7 +336,7 @@ export default function Contact() {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn w-full flex items-center justify-center gap-2 px-6 py-3 bg-cyan-500 text-black font-semibold rounded-lg hover:bg-cyan-400 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="btn w-full flex items-center justify-center gap-2 px-6 py-3 bg-cyan-500 text-black font-semibold rounded-2xl hover:bg-cyan-400 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                     whileHover={!isSubmitting ? { scale: 1.02, boxShadow: "0 5px 15px rgba(0, 255, 255, 0.3)" } : {}}
                     whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                   >

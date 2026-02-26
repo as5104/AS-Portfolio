@@ -86,9 +86,9 @@ export default function About() {
   const renderEducationCard = (item: typeof education[number], index: number) => (
     <div
       key={index}
-      className="group relative border border-cyan-500/20 rounded-xl p-4 sm:p-5 bg-black/40 backdrop-blur-sm hover:bg-cyan-500/5 hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-200 ease-out"
+      className="group relative border border-cyan-500/20 rounded-3xl p-4 sm:p-5 bg-black/40 backdrop-blur-sm hover:bg-cyan-500/5 hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-200 ease-out"
     >
-      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-cyan-500/10 border border-cyan-500/20 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-cyan-500/20 transition-colors duration-200">
+      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-cyan-500/10 border border-cyan-500/20 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-cyan-500/20 transition-colors duration-200">
         <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
       </div>
 
@@ -120,11 +120,11 @@ export default function About() {
           >
             <div className="relative">
               <div className="absolute -top-10 -left-10 w-64 h-64 bg-cyan-500/5 rounded-full filter blur-3xl"></div>
-              <div className="relative z-10 border border-cyan-500/20 rounded-lg p-0.5">
-                <div className="bg-black/60 p-5 sm:p-6 lg:p-8 rounded-lg">
+              <div className="relative z-10 border border-cyan-500/20 rounded-3xl p-0.5">
+                <div className="bg-black/60 p-5 sm:p-6 lg:p-8 rounded-[22px]">
                   <h3 className="text-xl sm:text-2xl font-bold mb-3">Who I Am</h3>
                   <p className="text-gray-300 mb-6">
-                    I&apos;m software developer from West Bengal, India, currently pursuing Computer Science & Engineering at IIIT Guwahati. I design and build end-to-end web applications, balancing polished, user-first interfaces with reliable systems.
+                    I&apos;m software developer from West Bengal, India, currently pursuing Computer Science &amp; Engineering at IIIT Guwahati. I design and build end-to-end web applications, balancing polished, user-first interfaces with reliable systems.
                   </p>
                   <p className="text-gray-300 mb-6">
                     My focus is clean, maintainable code, high performance, and delivering smooth, accessible user experiences that actually solve real problems.
@@ -134,10 +134,10 @@ export default function About() {
                       Development
                     </div>
                     <div className="animated-tag bg-cyan-500/10 px-4 py-2 rounded-full text-cyan-400 text-sm">
-                      UI/UX & Frontend
+                      UI/UX &amp; Frontend
                     </div>
                     <div className="animated-tag bg-cyan-500/10 px-4 py-2 rounded-full text-cyan-400 text-sm">
-                      Performance & Deployment
+                      Performance &amp; Deployment
                     </div>
                   </div>
                 </div>
@@ -165,9 +165,9 @@ export default function About() {
             className="relative"
           >
             <div className="absolute -top-5 -right-5 w-48 h-48 bg-cyan-500/5 rounded-full filter blur-3xl"></div>
-            <div className="relative z-10 border border-cyan-500/20 rounded-xl p-4 sm:p-5 lg:p-6 bg-black/40 backdrop-blur-sm h-full">
+            <div className="relative z-10 border border-cyan-500/20 rounded-3xl p-4 sm:p-5 lg:p-6 bg-black/40 backdrop-blur-sm h-full">
               <h3 className="text-lg sm:text-xl font-bold mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 flex items-center justify-center bg-cyan-500/10 rounded-lg">
+                <span className="w-8 h-8 flex items-center justify-center bg-cyan-500/10 rounded-xl">
                   <Zap className="w-4 h-4 text-cyan-400" />
                 </span>
                 Core Strengths
@@ -176,9 +176,9 @@ export default function About() {
                 {coreStrengths.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-cyan-500/5 hover:translate-x-1 transition-all duration-200 ease-out cursor-default"
+                    className="flex items-start gap-3 p-2.5 rounded-2xl hover:bg-cyan-500/5 hover:translate-x-1 transition-all duration-200 ease-out cursor-default"
                   >
-                    <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-cyan-500/10 rounded-lg border border-cyan-500/20">
+                    <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-cyan-500/10 rounded-xl border border-cyan-500/20">
                       <item.icon className="w-4 h-4 text-cyan-400" />
                     </div>
                     <div>
@@ -199,9 +199,9 @@ export default function About() {
             className="relative"
           >
             <div className="absolute -bottom-5 -left-5 w-48 h-48 bg-cyan-500/5 rounded-full filter blur-3xl"></div>
-            <div className="relative z-10 border border-cyan-500/20 rounded-xl p-4 sm:p-5 lg:p-6 bg-black/40 backdrop-blur-sm h-full">
+            <div className="relative z-10 border border-cyan-500/20 rounded-3xl p-4 sm:p-5 lg:p-6 bg-black/40 backdrop-blur-sm h-full">
               <h3 className="text-lg sm:text-xl font-bold mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 flex items-center justify-center bg-cyan-500/10 rounded-lg">
+                <span className="w-8 h-8 flex items-center justify-center bg-cyan-500/10 rounded-xl">
                   <Heart className="w-4 h-4 text-cyan-400" />
                 </span>
                 What Drives Me
@@ -210,9 +210,9 @@ export default function About() {
                 {whatDrivesMe.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-3 p-2.5 rounded-lg hover:bg-cyan-500/5 hover:-translate-x-1 transition-all duration-200 ease-out cursor-default"
+                    className="flex items-start gap-3 p-2.5 rounded-2xl hover:bg-cyan-500/5 hover:-translate-x-1 transition-all duration-200 ease-out cursor-default"
                   >
-                    <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-cyan-500/10 rounded-lg border border-cyan-500/20">
+                    <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-cyan-500/10 rounded-xl border border-cyan-500/20">
                       <item.icon className="w-4 h-4 text-cyan-400" />
                     </div>
                     <div>
@@ -235,7 +235,7 @@ export default function About() {
         >
           <div className="text-center mb-6 sm:mb-8">
             <h3 className="text-xl sm:text-2xl font-bold mb-2 flex items-center justify-center gap-2">
-              <span className="w-8 h-8 flex items-center justify-center bg-cyan-500/10 rounded-lg">
+              <span className="w-8 h-8 flex items-center justify-center bg-cyan-500/10 rounded-xl">
                 <BookOpen className="w-4 h-4 text-cyan-400" />
               </span>
               Education

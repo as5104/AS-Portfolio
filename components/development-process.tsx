@@ -91,8 +91,7 @@ export default function DevelopmentProcess() {
                 className="relative z-10"
               >
                 <div className="group relative h-full">
-                  {/* Card with CSS-only hover effects */}
-                  <div className="relative bg-black/50 backdrop-blur-sm border border-cyan-500/20 rounded-xl p-6 h-full overflow-hidden transition-all duration-200 ease-out hover:border-cyan-500/40 hover:bg-black/60 hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-500/10">
+                  <div className="relative bg-black/50 backdrop-blur-sm border border-cyan-500/20 rounded-3xl p-6 h-full overflow-hidden transition-all duration-200 ease-out hover:border-cyan-500/40 hover:bg-black/60 hover:-translate-y-2 hover:shadow-lg hover:shadow-cyan-500/10">
                     {/* Glow effect on hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
 
@@ -101,7 +100,7 @@ export default function DevelopmentProcess() {
                       <span className="w-8 h-8 flex items-center justify-center bg-cyan-500/20 text-cyan-400 rounded-full text-sm font-bold border border-cyan-500/30">
                         {item.step}
                       </span>
-                      <div className="w-10 h-10 flex items-center justify-center bg-cyan-500/10 rounded-lg border border-cyan-500/20 group-hover:bg-cyan-500/20 transition-colors duration-200">
+                      <div className="w-10 h-10 flex items-center justify-center bg-cyan-500/10 rounded-2xl border border-cyan-500/20 group-hover:bg-cyan-500/20 transition-colors duration-200">
                         <item.icon className="w-5 h-5 text-cyan-400" />
                       </div>
                     </div>
@@ -137,16 +136,16 @@ export default function DevelopmentProcess() {
         >
           <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-72 h-72 bg-cyan-500/5 rounded-full filter blur-3xl"></div>
 
-          <div className="relative z-10 border border-cyan-500/20 rounded-xl p-6 md:p-8 bg-black/40 backdrop-blur-sm">
+          <div className="relative z-10 border border-cyan-500/20 rounded-3xl p-6 md:p-8 bg-black/40 backdrop-blur-sm">
             <h3 className="text-xl md:text-2xl font-bold mb-8 text-center">Core Competencies</h3>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
               {coreCompetencies.map((item, index) => (
                 <div
                   key={index}
-                  className="group flex items-center gap-3 p-3 md:p-4 bg-black/30 border border-cyan-500/10 rounded-lg hover:border-cyan-500/30 hover:bg-cyan-500/5 hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-200 ease-out cursor-default"
+                  className="group flex items-center gap-3 p-3 md:p-4 bg-black/30 border border-cyan-500/10 rounded-2xl hover:border-cyan-500/30 hover:bg-cyan-500/5 hover:scale-[1.03] hover:-translate-y-0.5 transition-all duration-200 ease-out cursor-default"
                 >
-                  <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center bg-cyan-500/10 rounded-lg group-hover:bg-cyan-500/20 transition-colors duration-200">
+                  <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0 flex items-center justify-center bg-cyan-500/10 rounded-xl group-hover:bg-cyan-500/20 transition-colors duration-200">
                     <item.icon className="w-4 h-4 md:w-5 md:h-5 text-cyan-400" />
                   </div>
                   <span className="text-sm md:text-base font-medium text-gray-300 group-hover:text-white transition-colors duration-200">

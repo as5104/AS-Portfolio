@@ -50,18 +50,21 @@ export default function Navbar() {
     <>
       {/* DESKTOP TOP NAVBAR */}
       <header
-        className={cn(
-          "navbar-shell fixed top-0 left-0 w-full z-40 transition-all duration-300 pt-4 pb-3 sm:pt-6 sm:pb-4",
-          scrolled
-            ? "bg-black/35 backdrop-blur-xl shadow-lg shadow-black/30"
-            : "bg-transparent backdrop-blur-0 shadow-none"
-        )}
+        className="fixed top-0 left-0 w-full z-40 hidden md:block transition-all duration-500 pt-3"
       >
-        <div className="max-w-[1420px] mx-auto px-6 lg:px-10">
-          <div className="flex items-center justify-between">
+        <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
+          <div
+            className={cn(
+              "flex items-center justify-between px-5 py-3 rounded-full transition-all duration-500",
+              scrolled
+                ? "bg-black/50 backdrop-blur-2xl border border-white/[0.10] shadow-[0_8px_32px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.07)]"
+                : "bg-black/25 backdrop-blur-xl border border-white/[0.07] shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+            )}
+          >
+            {/* Logo */}
             <a
               href="#home"
-              className="text-xl sm:text-2xl font-bold"
+              className="text-lg lg:text-xl font-bold shrink-0"
               onClick={(e) => {
                 e.preventDefault()
                 scrollToSection("#home")
@@ -70,39 +73,104 @@ export default function Navbar() {
               <span className="gradient-text">AS</span>
             </a>
 
-            <nav className="hidden md:flex items-center space-x-6 xl:space-x-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    scrollToSection(link.href)
-                  }}
-                  className={cn(
-                    "nav-link text-sm lg:text-[14px] font-normal transition-colors",
-                    activeSection === link.href.replace("#", "")
-                      ? "text-cyan-400"
-                      : "text-white hover:text-cyan-400"
-                  )}
-                >
-                  {link.name}
-                </a>
-              ))}
-
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection("#contact")
-                }}
-                className="px-5 py-2 rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 hover:border-cyan-400 transition-all text-sm lg:text-[15px]"
-              >
-                Let&apos;s Talk
-              </a>
+            {/* Nav Links */}
+            <nav className="flex items-center gap-0.5 xl:gap-1">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.replace("#", "")
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      scrollToSection(link.href)
+                    }}
+                    className={cn(
+                      "group relative px-2.5 py-1 text-[12px] lg:text-[13px] font-normal transition-all duration-250",
+                      isActive
+                        ? "text-cyan-400 drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]"
+                        : "text-white/60 hover:text-cyan-300 hover:drop-shadow-[0_0_6px_rgba(0,255,255,0.4)]"
+                    )}
+                  >
+                    <span>{link.name}</span>
+                    <span
+                      className={cn(
+                        "absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full bg-cyan-400",
+                        "transition-all duration-300 ease-out",
+                        isActive
+                          ? "w-4/5 opacity-100"
+                          : "w-0 opacity-0 group-hover:w-4/5 group-hover:opacity-70"
+                      )}
+                    />
+                  </a>
+                )
+              })}
             </nav>
 
-            <div className="md:hidden" />
+            {/* CTA Button */}
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault()
+                scrollToSection("#contact")
+              }}
+              className={cn(
+                "shrink-0 px-4 py-1.5 rounded-full text-[12px] lg:text-[13px] font-medium transition-all duration-300",
+                "bg-cyan-500/10 border border-cyan-500/35 text-cyan-400",
+                "hover:bg-cyan-500/20 hover:border-cyan-400/60 hover:shadow-[0_0_20px_rgba(0,255,255,0.15)]",
+                "hover:-translate-y-px active:translate-y-0 active:scale-[0.98]"
+              )}
+            >
+              Let&apos;s Talk
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* MOBILE TOP BAR */}
+      <header
+        className={cn(
+          "fixed top-0 left-0 w-full z-40 md:hidden transition-all duration-500",
+          scrolled ? "pt-2" : "pt-3"
+        )}
+      >
+        <div className="px-3">
+          <div
+            className={cn(
+              "flex items-center justify-between px-4 py-2.5 rounded-full transition-all duration-500",
+              scrolled
+                ? "bg-black/50 backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)]"
+                : "bg-black/20 backdrop-blur-md border border-white/[0.05]"
+            )}
+          >
+            {/* Logo */}
+            <a
+              href="#home"
+              className="text-xl font-bold"
+              onClick={(e) => {
+                e.preventDefault()
+                scrollToSection("#home")
+              }}
+            >
+              <span className="gradient-text">AS</span>
+            </a>
+
+            {/* Let's Talk CTA */}
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault()
+                scrollToSection("#contact")
+              }}
+              className={cn(
+                "px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300",
+                "bg-cyan-500/10 border border-cyan-500/35 text-cyan-400",
+                "hover:bg-cyan-500/20 hover:border-cyan-400/60",
+                "active:scale-95"
+              )}
+            >
+              Let&apos;s Talk
+            </a>
           </div>
         </div>
       </header>

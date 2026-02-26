@@ -71,11 +71,11 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
-              className={`group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 sm:p-5 ${category.hoverBg} ${category.hoverBorder} hover:-translate-y-1 transition-all duration-200 ease-out`}
+              className={`group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-4 sm:p-5 ${category.hoverBg} ${category.hoverBorder} hover:-translate-y-1 transition-all duration-200 ease-out`}
             >
               <div className="flex items-center gap-3 mb-3 sm:mb-4">
                 <div
-                  className={`w-10 h-10 sm:w-11 sm:h-11 ${category.color} rounded-lg flex items-center justify-center transition-transform duration-200 group-hover:scale-110`}
+                  className={`w-10 h-10 sm:w-11 sm:h-11 ${category.color} rounded-2xl flex items-center justify-center transition-transform duration-200 group-hover:scale-110`}
                 >
                   <category.icon className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white" />
                 </div>

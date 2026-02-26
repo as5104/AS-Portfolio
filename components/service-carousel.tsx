@@ -126,7 +126,7 @@ export default function ServiceCarousel({
   return (
     <div
       ref={containerRef}
-      className="relative overflow-hidden rounded-xl border border-gray-800 bg-black/50 backdrop-blur-md w-full h-full"
+      className="relative overflow-hidden rounded-3xl border border-gray-800 bg-black/50 backdrop-blur-md w-full h-full"
     >
       <div className="absolute inset-0 flex items-center justify-center">
         <motion.div
@@ -138,7 +138,7 @@ export default function ServiceCarousel({
           exit="exit"
           className="w-full h-full flex flex-col items-center justify-center p-6"
         >
-          <div className="service-card bg-gradient-to-r from-black to-gray-900/50 p-6 rounded-lg border border-gray-800 hover:border-cyan-500/30 transition-all w-full max-w-md mx-auto">
+          <div className="service-card bg-gradient-to-r from-black to-gray-900/50 p-6 rounded-3xl border border-gray-800 hover:border-cyan-500/30 transition-all w-full max-w-md mx-auto">
             <div className="flex items-start gap-4">
               <div className="bg-cyan-500/10 p-3 rounded-lg">{serviceItems[currentIndex].icon}</div>
               <div>
@@ -169,9 +169,8 @@ export default function ServiceCarousel({
         {serviceItems.map((_, index) => (
           <button
             key={index}
-            className={`w-2 h-2 rounded-full transition-colors ${
-              currentIndex === index ? "bg-cyan-400" : "bg-gray-600"
-            }`}
+            className={`w-2 h-2 rounded-full transition-colors ${currentIndex === index ? "bg-cyan-400" : "bg-gray-600"
+              }`}
             onClick={() => {
               setCurrentIndex(index)
               setPage([index, index > currentIndex ? 1 : -1])

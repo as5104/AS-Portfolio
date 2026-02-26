@@ -26,34 +26,21 @@
   --font-body: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+/* Hidden scrollbar */
+html {
+  overflow-y: scroll;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.8);
-  border-radius: 4px;
-}
 
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--primary-dark), var(--primary));
-  border-radius: 4px;
-  border: 1px solid rgba(0, 255, 255, 0.2);
-}
 
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--primary), #00ffff);
-  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
-}
-
-::-webkit-scrollbar-corner {
-  background: rgba(15, 23, 42, 0.8);
-}
+/* Firefox */
 
 * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary-dark) rgba(15, 23, 42, 0.8);
+  scrollbar-width: none;
 }
 
 ::selection {
@@ -88,7 +75,7 @@ section {
   z-index: 1;
 }
 
-section > .container {
+section>.container {
   position: relative;
   z-index: 2;
 }
@@ -125,10 +112,12 @@ section > .container {
 }
 
 @keyframes blink {
+
   from,
   to {
     opacity: 1;
   }
+
   50% {
     opacity: 0;
   }
@@ -246,9 +235,11 @@ section > .container {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -276,6 +267,7 @@ section > .container {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -286,7 +278,6 @@ section > .container {
   }
 }
 
-/* ── Force Sonner toasts above all page elements ── */
 [data-sonner-toaster] {
   z-index: 99999 !important;
 }
