@@ -52,10 +52,10 @@ export default function Navbar() {
       <header
         className="fixed top-0 left-0 w-full z-40 hidden md:block transition-all duration-500 pt-3"
       >
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
+        <div className="max-w-[960px] mx-auto px-6 lg:px-8">
           <div
             className={cn(
-              "flex items-center justify-between px-5 py-3 rounded-full transition-all duration-500",
+              "flex items-center justify-between px-6 py-4 rounded-full transition-all duration-500",
               scrolled
                 ? "bg-black/50 backdrop-blur-2xl border border-white/[0.10] shadow-[0_8px_32px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.07)]"
                 : "bg-black/25 backdrop-blur-xl border border-white/[0.07] shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
@@ -64,13 +64,20 @@ export default function Navbar() {
             {/* Logo */}
             <a
               href="#home"
-              className="text-lg lg:text-xl font-bold shrink-0"
+              className="text-lg lg:text-xl font-bold shrink-0 outline-none"
               onClick={(e) => {
                 e.preventDefault()
                 scrollToSection("#home")
               }}
             >
-              <span className="gradient-text">AS</span>
+              <span
+                style={{
+                  background: "linear-gradient(90deg, #00ffff, #34d399)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >AS</span>
             </a>
 
             {/* Nav Links */}
@@ -88,14 +95,15 @@ export default function Navbar() {
                     className={cn(
                       "group relative px-2.5 py-1 text-[12px] lg:text-[13px] font-normal transition-all duration-250",
                       isActive
-                        ? "text-cyan-400 drop-shadow-[0_0_8px_rgba(0,255,255,0.6)]"
-                        : "text-white/60 hover:text-cyan-300 hover:drop-shadow-[0_0_6px_rgba(0,255,255,0.4)]"
+                        ? "text-[#00d4aa] drop-shadow-[0_0_8px_rgba(0,212,170,0.7)]"
+                        : "text-white/60 hover:text-[#00d4aa] hover:drop-shadow-[0_0_6px_rgba(0,212,170,0.4)]"
                     )}
                   >
                     <span>{link.name}</span>
                     <span
                       className={cn(
-                        "absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full bg-cyan-400",
+                        "absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full",
+                        "bg-gradient-to-r from-emerald-400 to-cyan-400",
                         "transition-all duration-300 ease-out",
                         isActive
                           ? "w-4/5 opacity-100"
@@ -116,12 +124,21 @@ export default function Navbar() {
               }}
               className={cn(
                 "shrink-0 px-4 py-1.5 rounded-full text-[12px] lg:text-[13px] font-medium transition-all duration-300",
-                "bg-cyan-500/10 border border-cyan-500/35 text-cyan-400",
-                "hover:bg-cyan-500/20 hover:border-cyan-400/60 hover:shadow-[0_0_20px_rgba(0,255,255,0.15)]",
+                "border border-[#00d4aa]/30 hover:border-[#00d4aa]/50",
                 "hover:-translate-y-px active:translate-y-0 active:scale-[0.98]"
               )}
+              style={{ background: "linear-gradient(135deg, rgba(16,185,129,0.08), rgba(0,229,255,0.08))" }}
             >
-              Let&apos;s Talk
+              <span
+                style={{
+                  background: "linear-gradient(to right, #34d399, #00e5ff)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Let&apos;s Talk
+              </span>
             </a>
           </div>
         </div>
@@ -164,12 +181,16 @@ export default function Navbar() {
               }}
               className={cn(
                 "px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300",
-                "bg-cyan-500/10 border border-cyan-500/35 text-cyan-400",
-                "hover:bg-cyan-500/20 hover:border-cyan-400/60",
-                "active:scale-95"
+                "border border-[#00d4aa]/30 hover:border-[#00d4aa]/50 active:scale-95"
               )}
+              style={{ background: "linear-gradient(135deg, rgba(16,185,129,0.08), rgba(0,229,255,0.08))" }}
             >
-              Let&apos;s Talk
+              <span style={{
+                background: "linear-gradient(to right, #34d399, #00e5ff)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}>Let&apos;s Talk</span>
             </a>
           </div>
         </div>
@@ -195,7 +216,7 @@ export default function Navbar() {
                     className={cn(
                       "flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all duration-200",
                       isActive
-                        ? "text-cyan-400 bg-cyan-500/15"
+                        ? "text-[#00d4aa] bg-gradient-to-r from-emerald-500/10 to-cyan-500/10"
                         : "text-gray-400 hover:text-white hover:bg-white/5"
                     )}
                   >

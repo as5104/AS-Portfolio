@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Outfit, Poppins } from "next/font/google"
+import { Outfit, Poppins, Great_Vibes } from "next/font/google"
 import "./globals.css"
 import ClientLayout from "./client-layout"
 import Navbar from "@/components/navbar"
@@ -17,6 +17,13 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-body",
+  display: "swap",
+})
+
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-signature",
   display: "swap",
 })
 
@@ -41,7 +48,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${outfit.variable} ${poppins.variable} font-sans bg-black text-white antialiased`}
+        className={`${outfit.variable} ${poppins.variable} ${greatVibes.variable} font-sans bg-black text-white antialiased`}
+        suppressHydrationWarning
       >
         <Navbar />
         <ClientLayout>{children}</ClientLayout>

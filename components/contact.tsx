@@ -124,17 +124,17 @@ export default function Contact() {
 
   const contactInfo = [
     {
-      icon: <Mail className="w-5 h-5 text-cyan-400" />,
+      icon: <Mail className="w-5 h-5 text-emerald-400" />,
       title: "Email",
-      details: "sarkarankit123456@gmail.com",
+      details: "sarkarkrad58@gmail.com",
     },
     {
-      icon: <Phone className="w-5 h-5 text-cyan-400" />,
+      icon: <Phone className="w-5 h-5 text-emerald-400" />,
       title: "Phone",
       details: "+91 9614161186",
     },
     {
-      icon: <MapPin className="w-5 h-5 text-cyan-400" />,
+      icon: <MapPin className="w-5 h-5 text-emerald-400" />,
       title: "Location",
       details: "Siliguri, India",
     },
@@ -147,9 +147,9 @@ export default function Contact() {
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/0 via-cyan-950/5 to-black/0 pointer-events-none"></div>
         <div className="container mx-auto px-4 md:px-6">
           <motion.div style={{ y, opacity }} className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Let&apos;s Work Together</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Have a project in mind? Let's talk about it.</p>
-            <div className="w-20 h-1 bg-cyan-400 mx-auto mt-4"></div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Let&apos;s Connect</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">Have any queries? Just drop a message.</p>
+            <div className="w-20 h-1 bg-emerald-400 mx-auto mt-4"></div>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -172,9 +172,9 @@ export default function Contact() {
                     whileTap={{ scale: 0.98 }}
                   >
                     <motion.div
-                      className="w-10 h-10 flex items-center justify-center bg-cyan-500/10 rounded-full"
+                      className="w-10 h-10 flex items-center justify-center bg-emerald-500/10 rounded-full"
                       whileHover={{
-                        backgroundColor: "rgba(0, 255, 255, 0.2)",
+                        backgroundColor: "rgba(16, 185, 129, 0.2)",
                         scale: 1.1,
                         transition: { duration: 0.2 },
                       }}
@@ -198,8 +198,8 @@ export default function Contact() {
                     href="https://www.linkedin.com/in/-ankitsarkar/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="social-icon w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-white hover:bg-cyan-500/20"
-                    whileHover={{ y: -5, backgroundColor: "rgba(0, 255, 255, 0.2)" }}
+                    className="social-icon w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-white hover:bg-emerald-500/20"
+                    whileHover={{ y: -5, backgroundColor: "rgba(16, 185, 129, 0.2)" }}
                     whileTap={{ scale: 0.95 }}
                     aria-label="LinkedIn Profile"
                   >
@@ -213,8 +213,8 @@ export default function Contact() {
                   {/* Instagram */}
                   <motion.a
                     href="#"
-                    className="social-icon w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-white hover:bg-cyan-500/20"
-                    whileHover={{ y: -5, backgroundColor: "rgba(0, 255, 255, 0.2)" }}
+                    className="social-icon w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-white hover:bg-emerald-500/20"
+                    whileHover={{ y: -5, backgroundColor: "rgba(16, 185, 129, 0.2)" }}
                     whileTap={{ scale: 0.95 }}
                     aria-label="Instagram Profile"
                   >
@@ -230,8 +230,8 @@ export default function Contact() {
                     href="https://github.com/as5104"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="social-icon w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-white hover:bg-cyan-500/20"
-                    whileHover={{ y: -5, backgroundColor: "rgba(0, 255, 255, 0.2)" }}
+                    className="social-icon w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-white hover:bg-emerald-500/20"
+                    whileHover={{ y: -5, backgroundColor: "rgba(16, 185, 129, 0.2)" }}
                     whileTap={{ scale: 0.95 }}
                     aria-label="GitHub Profile"
                   >
@@ -262,7 +262,7 @@ export default function Contact() {
                       required
                       maxLength={100}
                       disabled={isSubmitting}
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                     />
                   </div>
 
@@ -278,7 +278,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       disabled={isSubmitting}
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                     />
                   </div>
 
@@ -295,7 +295,7 @@ export default function Contact() {
                       required
                       maxLength={200}
                       disabled={isSubmitting}
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                     />
                   </div>
 
@@ -312,7 +312,7 @@ export default function Contact() {
                       rows={5}
                       maxLength={5000}
                       disabled={isSubmitting}
-                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed resize-none"
+                      className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all disabled:opacity-60 disabled:cursor-not-allowed resize-none"
                     ></textarea>
                   </div>
 
@@ -336,8 +336,8 @@ export default function Contact() {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn w-full flex items-center justify-center gap-2 px-6 py-3 bg-cyan-500 text-black font-semibold rounded-2xl hover:bg-cyan-400 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
-                    whileHover={!isSubmitting ? { scale: 1.02, boxShadow: "0 5px 15px rgba(0, 255, 255, 0.3)" } : {}}
+                    className="btn w-full flex items-center justify-center gap-2 px-6 py-3 bg-emerald-500 text-black font-semibold rounded-2xl hover:bg-emerald-400 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                    whileHover={!isSubmitting ? { scale: 1.02, boxShadow: "0 5px 15px rgba(16, 185, 129, 0.3)" } : {}}
                     whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                   >
                     {isSubmitting ? (

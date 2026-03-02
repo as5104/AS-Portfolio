@@ -41,7 +41,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#home"
-                    className="text-gray-400 hover:text-cyan-400 transition-colors nav-link inline-block"
+                    className="text-gray-400 hover:text-emerald-400 transition-colors nav-link inline-block"
                     onClick={(e) => {
                       e.preventDefault()
                       scrollToSection("home")
@@ -53,7 +53,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#about"
-                    className="text-gray-400 hover:text-cyan-400 transition-colors nav-link inline-block"
+                    className="text-gray-400 hover:text-emerald-400 transition-colors nav-link inline-block"
                     onClick={(e) => {
                       e.preventDefault()
                       scrollToSection("about")
@@ -65,7 +65,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#skills"
-                    className="text-gray-400 hover:text-cyan-400 transition-colors nav-link inline-block"
+                    className="text-gray-400 hover:text-emerald-400 transition-colors nav-link inline-block"
                     onClick={(e) => {
                       e.preventDefault()
                       scrollToSection("skills")
@@ -80,7 +80,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#process"
-                    className="text-gray-400 hover:text-cyan-400 transition-colors nav-link inline-block"
+                    className="text-gray-400 hover:text-emerald-400 transition-colors nav-link inline-block"
                     onClick={(e) => {
                       e.preventDefault()
                       scrollToSection("process")
@@ -92,7 +92,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#portfolio"
-                    className="text-gray-400 hover:text-cyan-400 transition-colors nav-link inline-block"
+                    className="text-gray-400 hover:text-emerald-400 transition-colors nav-link inline-block"
                     onClick={(e) => {
                       e.preventDefault()
                       scrollToSection("portfolio")
@@ -104,7 +104,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#contact"
-                    className="text-gray-400 hover:text-cyan-400 transition-colors nav-link inline-block"
+                    className="text-gray-400 hover:text-emerald-400 transition-colors nav-link inline-block"
                     onClick={(e) => {
                       e.preventDefault()
                       scrollToSection("contact")
@@ -122,13 +122,13 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4">Contact Info</h3>
             <ul className="space-y-2">
               <li className="contact-item flex items-center gap-2 text-gray-400">
-                <span className="text-cyan-400">Email:</span> sarkarankit123456@gmail.com
+                <span className="text-emerald-400">Email:</span> sarkarkrad58@gmail.com
               </li>
               <li className="contact-item flex items-center gap-2 text-gray-400">
-                <span className="text-cyan-400">Phone:</span> +91 9614161186
+                <span className="text-emerald-400">Phone:</span> +91 9614161186
               </li>
               <li className="contact-item flex items-center gap-2 text-gray-400">
-                <span className="text-cyan-400">Location:</span> Siliguri, India
+                <span className="text-emerald-400">Location:</span> Siliguri, India
               </li>
             </ul>
           </div>
@@ -140,7 +140,7 @@ export default function Footer() {
           </p>
           <motion.button
             onClick={scrollToTop}
-            className="animated-button mt-4 md:mt-0 w-10 h-10 bg-cyan-500/10 text-cyan-400 rounded-full flex items-center justify-center hover:bg-cyan-500/20 transition-all"
+            className="animated-button mt-4 md:mt-0 w-10 h-10 bg-emerald-500/10 text-emerald-400 rounded-full flex items-center justify-center hover:bg-emerald-500/20 transition-all"
             aria-label="Scroll to top"
             animate={{ y: [0, -8, 0] }}
             transition={{

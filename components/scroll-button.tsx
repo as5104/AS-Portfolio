@@ -20,7 +20,7 @@ export default function ScrollButton({ targetId }: ScrollButtonProps) {
     transition: {
       duration: 1.5,
       repeat: Number.POSITIVE_INFINITY,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
     },
   }
 
@@ -28,7 +28,8 @@ export default function ScrollButton({ targetId }: ScrollButtonProps) {
     <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
       <motion.button
         onClick={scrollToSection}
-        className="animated-button w-12 h-12 bg-cyan-500/10 text-cyan-400 rounded-full flex items-center justify-center border border-cyan-500/30 hover:bg-cyan-500/20"
+        className="animated-button w-12 h-12 rounded-full flex items-center justify-center border border-[#00d4aa]/30 hover:border-[#00d4aa]/60 text-[#00d4aa]"
+        style={{ background: "linear-gradient(135deg, rgba(16,185,129,0.1), rgba(0,229,255,0.1))" }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         animate={bounceAnimation}

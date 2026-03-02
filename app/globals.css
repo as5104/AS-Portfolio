@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --primary: #00ffff;
-  --primary-dark: #00cccc;
+  --primary: #00d4aa;
+  --primary-dark: #00a884;
   --background: #000000;
   --foreground: #ffffff;
   --card: #1f2937;
@@ -19,7 +19,7 @@
   --destructive-foreground: #ffffff;
   --border: #374151;
   --input: #374151;
-  --ring: #00ffff;
+  --ring: #00d4aa;
   --radius: 0.5rem;
 
   --font-heading: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -44,12 +44,12 @@ html {
 }
 
 ::selection {
-  background-color: rgba(0, 255, 255, 0.3);
+  background-color: rgba(16, 185, 129, 0.3);
   color: #ffffff;
 }
 
 ::-moz-selection {
-  background-color: rgba(0, 255, 255, 0.3);
+  background-color: rgba(16, 185, 129, 0.3);
   color: #ffffff;
 }
 
@@ -198,7 +198,7 @@ section>.container {
 
 .animated-button:active {
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 255, 255, 0.15);
 }
 
 .nav-link {
@@ -223,7 +223,7 @@ section>.container {
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #ffffff, #00ffff);
+  background: linear-gradient(90deg, #00ffff, #34d399);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -250,7 +250,7 @@ section>.container {
   background-color: black;
   border-radius: 9999px;
   padding: 1px;
-  background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+  background: linear-gradient(90deg, #00ffff, #10b981);
 }
 
 .cool-gradient-border-inner {
@@ -260,7 +260,7 @@ section>.container {
 }
 
 .cool-gradient-text {
-  background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+  background: linear-gradient(90deg, #00ffff, #10b981);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

@@ -33,21 +33,21 @@ export default function ServiceCarousel({
       description:
         "Building responsive, interactive user interfaces with React, Next.js, and modern CSS frameworks.",
       id: 1,
-      icon: <Layout className="w-6 h-6 text-cyan-400" />,
+      icon: <Layout className="w-6 h-6 text-emerald-400" />,
     },
     {
       title: "Web Performance",
       description:
         "Optimizing websites for speed, accessibility, and SEO to deliver exceptional user experiences.",
       id: 2,
-      icon: <Code className="w-6 h-6 text-cyan-400" />,
+      icon: <Code className="w-6 h-6 text-emerald-400" />,
     },
     {
       title: "Creative Solutions",
       description:
         "Solving complex UI challenges with innovative approaches and clean, maintainable code.",
       id: 3,
-      icon: <Lightbulb className="w-6 h-6 text-cyan-400" />,
+      icon: <Lightbulb className="w-6 h-6 text-emerald-400" />,
     },
   ]
 
@@ -138,9 +138,9 @@ export default function ServiceCarousel({
           exit="exit"
           className="w-full h-full flex flex-col items-center justify-center p-6"
         >
-          <div className="service-card bg-gradient-to-r from-black to-gray-900/50 p-6 rounded-3xl border border-gray-800 hover:border-cyan-500/30 transition-all w-full max-w-md mx-auto">
+          <div className="service-card bg-gradient-to-r from-black to-gray-900/50 p-6 rounded-3xl border border-gray-800 hover:border-emerald-500/30 transition-all w-full max-w-md mx-auto">
             <div className="flex items-start gap-4">
-              <div className="bg-cyan-500/10 p-3 rounded-lg">{serviceItems[currentIndex].icon}</div>
+              <div className="bg-emerald-500/10 p-3 rounded-lg">{serviceItems[currentIndex].icon}</div>
               <div>
                 <h3 className="text-xl font-bold mb-2">{serviceItems[currentIndex].title}</h3>
                 <p className="text-gray-400">{serviceItems[currentIndex].description}</p>
@@ -151,14 +151,14 @@ export default function ServiceCarousel({
       </div>
 
       <button
-        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 text-white hover:bg-cyan-500/20 transition-colors z-10"
+        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 text-white hover:bg-emerald-500/20 transition-colors z-10"
         onClick={() => paginate(-1)}
         aria-label="Previous service"
       >
         ←
       </button>
       <button
-        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 text-white hover:bg-cyan-500/20 transition-colors z-10"
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 text-white hover:bg-emerald-500/20 transition-colors z-10"
         onClick={() => paginate(1)}
         aria-label="Next service"
       >
@@ -169,7 +169,7 @@ export default function ServiceCarousel({
         {serviceItems.map((_, index) => (
           <button
             key={index}
-            className={`w-2 h-2 rounded-full transition-colors ${currentIndex === index ? "bg-cyan-400" : "bg-gray-600"
+            className={`w-2 h-2 rounded-full transition-colors ${currentIndex === index ? "bg-emerald-400" : "bg-gray-600"
               }`}
             onClick={() => {
               setCurrentIndex(index)

@@ -20,8 +20,21 @@ export default function SuccessModal({ isOpen, onClose, name }: SuccessModalProp
     }, [isOpen, onClose])
 
     useEffect(() => {
-        document.body.style.overflow = isOpen ? "hidden" : ""
-        return () => { document.body.style.overflow = "" }
+        const html = document.documentElement
+        const body = document.body
+
+        if (isOpen) {
+            html.style.overflow = "hidden"
+            body.style.overflow = "hidden"
+        } else {
+            html.style.overflow = ""
+            body.style.overflow = ""
+        }
+
+        return () => {
+            html.style.overflow = ""
+            body.style.overflow = ""
+        }
     }, [isOpen])
 
     const firstName = name ? name.trim().split(" ")[0] : ""
@@ -54,8 +67,8 @@ export default function SuccessModal({ isOpen, onClose, name }: SuccessModalProp
                         >
                             <div className="relative rounded-2xl bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/60 overflow-hidden">
 
-                                {/* Top cyan accent line */}
-                                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
+                                {/* Top accent line */}
+                                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent" />
 
                                 {/* Close */}
                                 <button
@@ -72,7 +85,7 @@ export default function SuccessModal({ isOpen, onClose, name }: SuccessModalProp
                                         initial={{ scale: 0.6, opacity: 0 }}
                                         animate={{ scale: 1, opacity: 1 }}
                                         transition={{ delay: 0.1, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                                        className="mx-auto mb-5 w-14 h-14 rounded-full bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center"
+                                        className="mx-auto mb-5 w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center"
                                     >
                                         {/* Animated checkmark SVG */}
                                         <svg
@@ -80,7 +93,7 @@ export default function SuccessModal({ isOpen, onClose, name }: SuccessModalProp
                                             height="26"
                                             viewBox="0 0 26 26"
                                             fill="none"
-                                            className="text-cyan-400"
+                                            className="text-emerald-400"
                                         >
                                             <motion.path
                                                 d="M5 13.5L10.5 19L21 8"
@@ -118,7 +131,7 @@ export default function SuccessModal({ isOpen, onClose, name }: SuccessModalProp
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ delay: 0.28, duration: 0.25 }}
-                                        className="w-full py-2.5 rounded-xl text-sm font-medium text-cyan-400 border border-cyan-500/25 bg-cyan-500/8 hover:bg-cyan-500/15 hover:border-cyan-400/40 transition-all duration-150"
+                                        className="w-full py-2.5 rounded-xl text-sm font-medium text-emerald-400 border border-emerald-500/25 bg-emerald-500/8 hover:bg-emerald-500/15 hover:border-emerald-400/40 transition-all duration-150"
                                         whileHover={{ scale: 1.01 }}
                                         whileTap={{ scale: 0.99 }}
                                     >

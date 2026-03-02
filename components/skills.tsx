@@ -18,9 +18,9 @@ export default function Skills() {
     {
       title: "Languages",
       icon: Code2,
-      color: "bg-cyan-500",
-      hoverBg: "hover:bg-cyan-500/10",
-      hoverBorder: "hover:border-cyan-500/40",
+      color: "bg-emerald-500",
+      hoverBg: "hover:bg-emerald-500/10",
+      hoverBorder: "hover:border-emerald-500/40",
       skills: ["Python", "C", "C++", "Java"],
     },
     {
@@ -55,12 +55,12 @@ export default function Skills() {
       <div className="container mx-auto px-4 sm:px-6">
         <motion.div style={{ y, opacity }} className="text-center mb-10 sm:mb-12 lg:mb-14">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">
-            Skills & <span className="text-cyan-400">Expertise</span>
+            Skills & <span className="text-emerald-400">Expertise</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
             A comprehensive toolkit for building modern, scalable applications.
           </p>
-          <div className="w-16 sm:w-20 h-1 bg-cyan-400 mx-auto mt-3"></div>
+          <div className="w-16 sm:w-20 h-1 bg-emerald-400 mx-auto mt-3"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
