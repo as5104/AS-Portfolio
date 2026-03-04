@@ -1,11 +1,12 @@
 "use client"
 
 import type React from "react"
-import { useRef, useState } from "react"
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
+import { useRef, useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { Mail, MapPin, Phone, Send, Loader2, AlertCircle } from "lucide-react"
 import { toast } from "sonner"
 import SuccessModal from "./success-modal"
+import gsap from "gsap"
 
 //Rate Limit Config
 const RATE_LIMIT_KEY = "as_portfolio_rl"
@@ -47,13 +48,58 @@ function recordSend(email: string, recent: number[]) {
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  })
+  const headerRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
 
-  const y = useTransform(scrollYProgress, [0, 1], [50, -50])
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+  // GSAP scroll-driven animations
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    const ctx = gsap.context(() => {
+      // Header parallax
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { yPercent: 20, opacity: 0 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: "top 90%",
+              end: "top 60%",
+              scrub: 1,
+            },
+          }
+        )
+      }
+
+      // Content grid slides in
+      if (contentRef.current) {
+        const cols = contentRef.current.querySelectorAll(":scope > div")
+        gsap.fromTo(
+          cols,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            ease: "power2.out",
+            stagger: 0.2,
+            scrollTrigger: {
+              trigger: contentRef.current,
+              start: "top 85%",
+              end: "top 50%",
+              scrub: 1,
+            },
+          }
+        )
+      }
+    }, section)
+
+    return () => ctx.revert()
+  }, [])
 
   const [formData, setFormData] = useState({
     name: "",
@@ -146,14 +192,14 @@ export default function Contact() {
       <section id="contact" ref={sectionRef} className="py-20 relative">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/0 via-cyan-950/5 to-black/0 pointer-events-none"></div>
         <div className="container mx-auto px-4 md:px-6">
-          <motion.div style={{ y, opacity }} className="text-center mb-16">
+          <div ref={headerRef} className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Let&apos;s Connect</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">Have any queries? Just drop a message.</p>
             <div className="w-20 h-1 bg-emerald-400 mx-auto mt-4"></div>
-          </motion.div>
+          </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="animate-fade-in">
+          <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div>
               <h3 className="text-2xl font-bold mb-6">Get In Touch</h3>
               <p className="text-gray-400 mb-8">
                 Feel free to reach out if you want to collaborate with me, or simply have a chat.
@@ -244,7 +290,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="animate-fade-in">
+            <div>
               <form onSubmit={handleSubmit} className="bg-gray-900/50 p-8 rounded-3xl border border-gray-800">
                 <h3 className="text-2xl font-bold mb-6">Send Message</h3>
 

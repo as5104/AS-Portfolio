@@ -1,8 +1,9 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { cn } from "@/lib/utils"
 import { Home, User, Code2, Layers, Briefcase, Mail } from "lucide-react"
+import { smoothScrollTo } from "./smooth-scroll-provider"
 
 const navLinks = [
   { name: "Home", href: "#home", icon: Home },
@@ -41,10 +42,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id.replace("#", ""))
-    if (el) el.scrollIntoView({ behavior: "smooth" })
-  }
+  const scrollToSection = useCallback((id: string) => {
+    const target = id.replace("#", "")
+    smoothScrollTo(`#${target}`, { offset: -80 })
+  }, [])
 
   return (
     <>

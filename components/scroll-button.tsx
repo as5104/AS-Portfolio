@@ -2,6 +2,7 @@
 
 import { ChevronDown } from "lucide-react"
 import { motion } from "framer-motion"
+import { smoothScrollTo } from "./smooth-scroll-provider"
 
 interface ScrollButtonProps {
   targetId: string
@@ -9,11 +10,9 @@ interface ScrollButtonProps {
 
 export default function ScrollButton({ targetId }: ScrollButtonProps) {
   const scrollToSection = () => {
-    const element = document.getElementById(targetId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
+    smoothScrollTo(`#${targetId}`, { offset: -80 })
   }
+
 
   const bounceAnimation = {
     y: [0, -8, 0],

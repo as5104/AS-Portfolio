@@ -1,18 +1,63 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef, useEffect } from "react"
 import { Code2, Palette, Zap, Wrench } from "lucide-react"
+import gsap from "gsap"
 
 export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  })
+  const headerRef = useRef<HTMLDivElement>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
 
-  const y = useTransform(scrollYProgress, [0, 1], [50, -50])
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    const ctx = gsap.context(() => {
+      // Header parallax
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { yPercent: 20, opacity: 0 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: "top 90%",
+              end: "top 60%",
+              scrub: 1,
+            },
+          }
+        )
+      }
+
+      // Cards stagger in from bottom with slight scale
+      if (gridRef.current) {
+        const cards = gridRef.current.querySelectorAll(":scope > div")
+        gsap.fromTo(
+          cards,
+          { y: 80, opacity: 0, scale: 0.9 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            ease: "power2.out",
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: "top 85%",
+              end: "top 35%",
+              scrub: 1.2,
+            },
+          }
+        )
+      }
+    }, section)
+
+    return () => ctx.revert()
+  }, [])
 
   const skillCategories = [
     {
@@ -53,7 +98,7 @@ export default function Skills() {
     <section id="skills" ref={sectionRef} className="py-14 sm:py-16 lg:py-20 relative">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/0 via-cyan-950/5 to-black/0 pointer-events-none"></div>
       <div className="container mx-auto px-4 sm:px-6">
-        <motion.div style={{ y, opacity }} className="text-center mb-10 sm:mb-12 lg:mb-14">
+        <div ref={headerRef} className="text-center mb-10 sm:mb-12 lg:mb-14">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">
             Skills & <span className="text-emerald-400">Expertise</span>
           </h2>
@@ -61,16 +106,12 @@ export default function Skills() {
             A comprehensive toolkit for building modern, scalable applications.
           </p>
           <div className="w-16 sm:w-20 h-1 bg-emerald-400 mx-auto mt-3"></div>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+        <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
           {skillCategories.map((category, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
               className={`group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-4 sm:p-5 ${category.hoverBg} ${category.hoverBorder} hover:-translate-y-1 transition-all duration-200 ease-out`}
             >
               <div className="flex items-center gap-3 mb-3 sm:mb-4">
@@ -89,7 +130,7 @@ export default function Skills() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

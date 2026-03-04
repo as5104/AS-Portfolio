@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import BackgroundAurora from "@/components/background-aurora"
 import LoadingScreen from "@/components/loading-screen"
+import SmoothScrollProvider from "@/components/smooth-scroll-provider"
 
 export default function ClientLayout({
   children,
@@ -13,7 +14,7 @@ export default function ClientLayout({
 }) {
   const [loading, setLoading] = useState(true)
 
-  
+
   useEffect(() => {
     if (loading) {
       document.body.style.overflow = "hidden"
@@ -54,10 +55,12 @@ export default function ClientLayout({
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="w-full relative min-h-screen overflow-x-hidden"
           >
-            <BackgroundAurora />
-            <main className="relative z-10 pb-[88px] md:pb-0">
-              {children}
-            </main>
+            <SmoothScrollProvider>
+              <BackgroundAurora />
+              <main className="relative z-10 pb-[88px] md:pb-0">
+                {children}
+              </main>
+            </SmoothScrollProvider>
           </motion.div>
         )}
       </AnimatePresence>

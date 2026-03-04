@@ -2,20 +2,20 @@
 
 import { ArrowUp } from "lucide-react"
 import { motion } from "framer-motion"
+import { smoothScrollTo, getLenis } from "./smooth-scroll-provider"
 
 export default function Footer() {
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
+    const lenis = getLenis()
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 2.5 })
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
   }
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
+    smoothScrollTo(`#${sectionId}`, { offset: -80 })
   }
 
   return (

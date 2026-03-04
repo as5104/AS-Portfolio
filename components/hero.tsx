@@ -1,15 +1,49 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import ScrollButton from "./scroll-button"
 import Orb from "./orb"
 import RotatingText from "./rotating-text"
 import SignatureName from "./signature-name"
+import gsap from "gsap"
+import { smoothScrollTo } from "./smooth-scroll-provider"
+
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
+  const textRef = useRef<HTMLDivElement>(null)
+  const orbRef = useRef<HTMLDivElement>(null)
+
+  // GSAP scroll-driven exit animation
+  useEffect(() => {
+    const section = sectionRef.current
+    const text = textRef.current
+    if (!section) return
+
+    const ctx = gsap.context(() => {
+      if (text) {
+        gsap.to(text, {
+          yPercent: -30,
+          opacity: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.2,
+          },
+        })
+      }
+    }, section)
+
+    return () => ctx.revert()
+  }, [])
+
+  const handleScrollTo = (target: string) => {
+    smoothScrollTo(target, { offset: -80 })
+  }
 
   return (
     <section id="home" ref={sectionRef} className="min-h-screen flex items-center pt-20 pb-10 relative">
@@ -17,7 +51,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
           {/* LEFT COLUMN */}
-          <div>
+          <div ref={textRef}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -98,7 +132,7 @@ export default function Hero() {
                   href="#portfolio"
                   onClick={(e) => {
                     e.preventDefault()
-                    document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" })
+                    handleScrollTo("#portfolio")
                   }}
                   className="group relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-black font-semibold text-sm overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,212,170,0.3)]"
                 >
@@ -116,7 +150,7 @@ export default function Hero() {
                   href="#contact"
                   onClick={(e) => {
                     e.preventDefault()
-                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                    handleScrollTo("#contact")
                   }}
                   className="inline-flex items-center px-7 py-3.5 rounded-full border border-white/20 text-white font-semibold text-sm transition-all duration-300 hover:border-[#00d4aa]/50 hover:text-[#00d4aa] hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(0,212,170,0.2)]"
                 >
@@ -128,6 +162,7 @@ export default function Hero() {
 
           {/* RIGHT COLUMN — Orb */}
           <motion.div
+            ref={orbRef}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}

@@ -1,40 +1,84 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 import ServiceCarousel from "./service-carousel"
 import { Lightbulb, Target, Zap, Rocket, Heart, TrendingUp, GraduationCap, BookOpen } from "lucide-react"
+import gsap from "gsap"
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  })
+  const headerRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+  const educationRef = useRef<HTMLDivElement>(null)
 
-  const y = useTransform(scrollYProgress, [0, 1], [50, -50])
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
-
+  // GSAP scroll-driven animations
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible")
-          } else {
-            entry.target.classList.remove("visible")
+    const section = sectionRef.current
+    if (!section) return
+
+    const ctx = gsap.context(() => {
+      // Header parallax
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { yPercent: 20, opacity: 0 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: "top 90%",
+              end: "top 60%",
+              scrub: 1,
+            },
           }
-        })
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -10% 0px" },
-    )
+        )
+      }
 
-    const elements = document.querySelectorAll(".animate-fade-in")
-    elements.forEach((el) => observer.observe(el))
+      // Stagger the "Core Strengths" and "What Drives Me" cards
+      if (cardsRef.current) {
+        const cards = cardsRef.current.querySelectorAll(":scope > div")
+        gsap.fromTo(
+          cards,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            ease: "power2.out",
+            stagger: 0.15,
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: "top 85%",
+              end: "top 45%",
+              scrub: 1.2,
+            },
+          }
+        )
+      }
 
-    return () => {
-      elements.forEach((el) => observer.unobserve(el))
-    }
+      // Education section
+      if (educationRef.current) {
+        gsap.fromTo(
+          educationRef.current,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: educationRef.current,
+              start: "top 85%",
+              end: "top 55%",
+              scrub: 1,
+            },
+          }
+        )
+      }
+    }, section)
+
+    return () => ctx.revert()
   }, [])
 
   const coreStrengths = [
@@ -106,10 +150,10 @@ export default function About() {
     <section id="about" ref={sectionRef} className="py-14 sm:py-16 lg:py-20 relative">
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/0 via-cyan-950/5 to-black/0 pointer-events-none"></div>
       <div className="container mx-auto px-4 sm:px-6">
-        <motion.div style={{ y, opacity }} className="text-center mb-10 sm:mb-12 lg:mb-14">
+        <div ref={headerRef} className="text-center mb-10 sm:mb-12 lg:mb-14">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">About Me</h2>
           <div className="w-16 h-1 bg-emerald-400 mx-auto"></div>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
           <motion.div
@@ -156,14 +200,8 @@ export default function About() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 mt-10 sm:mt-12 lg:mt-14">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: "-50px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="relative"
-          >
+        <div ref={cardsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 mt-10 sm:mt-12 lg:mt-14">
+          <div className="relative">
             <div className="absolute -top-5 -right-5 w-48 h-48 bg-emerald-500/5 rounded-full filter blur-3xl"></div>
             <div className="relative z-10 border border-emerald-500/20 rounded-3xl p-4 sm:p-5 lg:p-6 bg-black/40 backdrop-blur-sm h-full">
               <h3 className="text-lg sm:text-xl font-bold mb-4 flex items-center gap-2">
@@ -189,15 +227,9 @@ export default function About() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-            className="relative"
-          >
+          <div className="relative">
             <div className="absolute -bottom-5 -left-5 w-48 h-48 bg-emerald-500/5 rounded-full filter blur-3xl"></div>
             <div className="relative z-10 border border-emerald-500/20 rounded-3xl p-4 sm:p-5 lg:p-6 bg-black/40 backdrop-blur-sm h-full">
               <h3 className="text-lg sm:text-xl font-bold mb-4 flex items-center gap-2">
@@ -223,16 +255,10 @@ export default function About() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mt-10 sm:mt-12 lg:mt-14"
-        >
+        <div ref={educationRef} className="mt-10 sm:mt-12 lg:mt-14">
           <div className="text-center mb-6 sm:mb-8">
             <h3 className="text-xl sm:text-2xl font-bold mb-2 flex items-center justify-center gap-2">
               <span className="w-8 h-8 flex items-center justify-center bg-emerald-500/10 rounded-xl">
@@ -254,7 +280,7 @@ export default function About() {
               </div>
             )}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
