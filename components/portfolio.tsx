@@ -157,10 +157,10 @@ export default function Portfolio() {
       >
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/0 via-cyan-950/5 to-black/0 pointer-events-none" />
 
-        <div className="h-full lg:flex">
+        <div className="h-full lg:flex container mx-auto px-4 md:px-6">
           {/* LEFT: Description panel (desktop only) */}
           <div className="hidden lg:flex lg:w-[38%] items-center">
-            <div className="px-8 xl:px-14 w-full">
+            <div className="w-full lg:pr-8 xl:pr-14">
               <h2 className="text-4xl xl:text-5xl font-bold mb-6 leading-tight">
                 Portfolio
                 <span className="block mt-1">
@@ -229,7 +229,7 @@ export default function Portfolio() {
           </div>
 
           {/* RIGHT: Cards area */}
-          <div className="w-full lg:w-[62%] h-full flex flex-col items-center justify-center relative px-4 sm:px-6">
+          <div className="w-full lg:w-[62%] h-full flex flex-col items-center justify-center relative">
             {/* Mobile title */}
             <div className="lg:hidden absolute top-8 sm:top-10 left-0 right-0 text-center z-10 px-4">
               <h2 className="text-2xl sm:text-3xl font-bold">
