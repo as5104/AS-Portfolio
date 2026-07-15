@@ -19,29 +19,32 @@ const projects = [
     liveLink: "#",
   },
   {
-    title: "AgriConnect",
+    title: "Arthix - Finance & Expense Manager",
     description:
-      "Agricultural platform connecting farmers with buyers and providing market insights.",
-    tags: ["Next.js", "TypeScript", "Vite", "Tailwind CSS"],
-    image: "/placeholder2.png?height=600&width=800",
-    githubLink: "https://github.com/as5104/AgriConnect",
+      "A full-stack personal finance and group expense-splitting app with budgeting, savings goals, and 5 split modes powered by an automated debt-simplification algorithm. Includes a smart bank statement parser that auto-detects and categorizes Indian banking CSV/XLSX transactions.",
+    tags: ["Next.js 16", "React 19", "TypeScript", "Supabase", "PostgreSQL", "Tailwind CSS", "Zod", "Recharts", "Brevo API"],
+    image: "/placeholder2.jpg?height=600&width=800",
+    mobileImage: "/placeholder6.jpg",
+    githubLink: "https://github.com/as5104/Arthix",
+    liveLink: "https://arthix-two.vercel.app",
+  },
+  {
+    title: "UniAdmin - University Admin Portal",
+    description:
+      "A multi-role university administration portal automating academic workflows - course enrollment, grading, attendance, leave approvals, and re-evaluations with strict RBAC controls and 20+ PostgreSQL tables secured by Row-Level Security.",
+    tags: ["React 19", "TypeScript", "Vite", "Node.js", "Express", "Supabase", "PostgreSQL", "Tailwind CSS", "Zod"],
+    image: "/placeholder3.png?height=600&width=800",
+    mobileImage: "/placeholder7.png",
+    githubLink: "https://github.com/as5104/CS331-project",
   },
   {
     title: "Pig Dice Game",
     description:
       "Interactive dice game with modern UI design and engaging gameplay mechanics.",
     tags: ["TypeScript", "React", "Vite", "Framer Motion", "Tailwind CSS"],
-    image: "/placeholder3.png?height=600&width=800",
+    image: "/placeholder4.png?height=600&width=800",
     githubLink: "https://github.com/as5104/Pig-Dice-Game-with-Ui",
     liveLink: "https://as5104.github.io/Pig-Dice-Game-with-Ui/",
-  },
-  {
-    title: "Math Challenge",
-    description:
-      "Fun math game with various difficulty levels and a score system.",
-    tags: ["React", "JavaScript", "Tailwind CSS"],
-    image: "/placeholder4.png?height=600&width=800",
-    githubLink: "https://github.com/as5104/Math-Challenge-with-ui",
   },
 ]
 
