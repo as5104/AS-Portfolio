@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import ScrollButton from "./scroll-button"
@@ -15,6 +15,7 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
   const orbRef = useRef<HTMLDivElement>(null)
+  const [resumeHovered, setResumeHovered] = useState(false)
 
   // GSAP scroll-driven exit animation
   useEffect(() => {
@@ -145,16 +146,84 @@ export default function Hero() {
                   </span>
                 </a>
 
-                {/* Contact Me */}
+                {/* Resume */}
                 <a
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handleScrollTo("#contact")
-                  }}
-                  className="inline-flex items-center px-7 py-3.5 rounded-full border border-white/20 text-white font-semibold text-sm transition-all duration-300 hover:border-[#00d4aa]/50 hover:text-[#00d4aa] hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(0,212,170,0.2)]"
+                  href="/MyResume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex rounded-full p-[2px] overflow-hidden"
+                  onMouseEnter={() => setResumeHovered(true)}
+                  onMouseLeave={() => setResumeHovered(false)}
                 >
-                  Contact Me
+                  {/* Default white border bg */}
+                  <span className="absolute inset-0 rounded-full bg-white/80" />
+                  {/* Gradient sweep over border */}
+                  <span
+                    className="absolute inset-0 w-0 transition-all duration-300 ease-out group-hover:w-full rounded-full"
+                    style={{ background: "linear-gradient(to right, #34d399, #00e5ff)" }}
+                  />
+                  {/* Inner glass content */}
+                  <span
+                    className="relative flex items-center gap-2.5 px-7 py-3.5 rounded-full font-semibold text-sm text-white"
+                    style={{
+                      background: "rgba(5, 10, 20, 0.85)",
+                      backdropFilter: "blur(12px)",
+                      WebkitBackdropFilter: "blur(12px)",
+                    }}
+                  >
+                    <motion.svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      animate={{ scale: resumeHovered ? 1.12 : 1 }}
+                      transition={{ type: "spring", stiffness: 350, damping: 18 }}
+                    >
+                      {/* Document body - draws itself */}
+                      <motion.path
+                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"
+                        animate={{ pathLength: resumeHovered ? [0, 1] : 1 }}
+                        transition={resumeHovered ? { duration: 0.5, ease: "easeInOut" } : { duration: 0.35 }}
+                        style={{ pathLength: 1 }}
+                      />
+                      {/* Corner fold - peels in */}
+                      <motion.path
+                        d="M14 2v6h6"
+                        animate={{
+                          pathLength: resumeHovered ? [0, 1] : 1,
+                          opacity: resumeHovered ? [0, 1] : 1,
+                        }}
+                        transition={resumeHovered ? { duration: 0.3, delay: 0.25, ease: "easeOut" } : { duration: 0.3 }}
+                        style={{ pathLength: 1 }}
+                      />
+                      {/* Header line - short */}
+                      <motion.line
+                        x1="8" y1="9" x2="12" y2="9"
+                        animate={{ pathLength: resumeHovered ? [0, 1] : 1, opacity: resumeHovered ? [0, 1] : 1 }}
+                        transition={resumeHovered ? { duration: 0.2, delay: 0.38, ease: "easeOut" } : { duration: 0.2 }}
+                        style={{ pathLength: 1 }}
+                      />
+                      {/* Text line 1 */}
+                      <motion.line
+                        x1="8" y1="13" x2="16" y2="13"
+                        animate={{ pathLength: resumeHovered ? [0, 1] : 1, opacity: resumeHovered ? [0, 1] : 1 }}
+                        transition={resumeHovered ? { duration: 0.25, delay: 0.46, ease: "easeOut" } : { duration: 0.2 }}
+                        style={{ pathLength: 1 }}
+                      />
+                      {/* Text line 2 */}
+                      <motion.line
+                        x1="8" y1="17" x2="16" y2="17"
+                        animate={{ pathLength: resumeHovered ? [0, 1] : 1, opacity: resumeHovered ? [0, 1] : 1 }}
+                        transition={resumeHovered ? { duration: 0.25, delay: 0.54, ease: "easeOut" } : { duration: 0.2 }}
+                        style={{ pathLength: 1 }}
+                      />
+                    </motion.svg>
+                    Resume
+                  </span>
                 </a>
               </motion.div>
             </motion.div>
